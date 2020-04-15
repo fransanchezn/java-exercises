@@ -24,7 +24,7 @@ public class ProductSubSeqCount {
                 result.addAll(Collections.singletonList(ite));
             }
 
-            for (int j = i + 1; j < arr.size(); j++) {
+            for (int j = i+1; j < arr.size(); j++) {
                 count += arr.get(j);
                 ite.add(arr.get(j));
 
