@@ -8,7 +8,6 @@ import java.util.Map;
 
 public class StockAnalysis {
     public static void main(String[] args) {
-
         List<String> input1 = new ArrayList<>(Arrays.asList("P1:a", "P3:b", "P5:x"));
         List<String> input2 = new ArrayList<>(Arrays.asList("P1:b", "P2:q", "P5:x"));
         System.out.println(stockAnalysis(input1, input2));
