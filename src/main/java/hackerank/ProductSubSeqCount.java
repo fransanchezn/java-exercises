@@ -21,7 +21,7 @@ public class ProductSubSeqCount {
             ite.add(arr.get(i));
 
             if (count % k == 0) {
-                result.addAll(Collections.singleton(new ArrayList<>(ite)));
+                result.addAll(Collections.singletonList(ite));
             }
 
             for (int j = i + 1; j < arr.size(); j++) {
@@ -29,7 +29,7 @@ public class ProductSubSeqCount {
                 ite.add(arr.get(j));
 
                 if (count % k == 0) {
-                    result.addAll(Collections.singleton(new ArrayList<>(ite)));
+                    result.addAll(Collections.singletonList(ite));
                 }
             }
         }

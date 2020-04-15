@@ -8,19 +8,14 @@ import java.util.List;
 public class CombinationSum {
 
     public static void main(String[] args) {
-        List<Integer> numbers = new ArrayList<>(Arrays.asList(new Integer[]{1, 2, 5, 6}));
+        List<Integer> numbers = new ArrayList<>(Arrays.asList(1, 2, 5, 6));
         int target = 7;
         Collections.sort(numbers);
 
         List<List<Integer>> result = new ArrayList<>();
-        comSum(numbers, 0, target, new ArrayList<Integer>(), result);
+        comSum(numbers, 0, target, new ArrayList<>(), result);
 
         System.out.println(result);
-
-//
-//        numbers = new ArrayList<>(Arrays.asList(new Integer[]{2, 5, 2, 1, 2}));
-//        target = 5;
-//        System.out.println(comSum(numbers, target));
     }
 
     static void comSum(List<Integer> numbers, int index, int target, List<Integer> current, List<List<Integer>> result) {
@@ -37,10 +32,11 @@ public class CombinationSum {
         }
 
         for (int i = index; i < numbers.size(); i++) {
-//            if (i == index || numbers.get(i) != numbers.get(i - 1)) {
-            current.add(numbers.get(i));
-            comSum(numbers, i + 1, target - numbers.get(i), current, result);
-            current.remove(current.size() - 1);
+            if (i == index || numbers.get(i) != numbers.get(i - 1)) {
+                current.add(numbers.get(i));
+                comSum(numbers, i + 1, target - numbers.get(i), current, result);
+                current.remove(current.size() - 1);
+            }
         }
 
 
