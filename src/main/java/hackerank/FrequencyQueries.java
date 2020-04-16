@@ -25,7 +25,7 @@ public class FrequencyQueries {
         queries.add(q6);
         queries.add(q7);
 
-        freqQuery(queries);
+        System.out.println(freqQuery(queries));
     }
 
     static List<Integer> freqQuery(List<List<Integer>> queries) {

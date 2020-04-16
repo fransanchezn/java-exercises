@@ -11,7 +11,12 @@ public class Anagrams {
         b = b.toLowerCase();
 
         for (char c : a.toCharArray()) {
+            if (b.isEmpty()) {
+                return false;
+            }
+
             int l = b.length();
+
             b = b.replaceFirst(c+"","");
 
             if (l == b.length()) {

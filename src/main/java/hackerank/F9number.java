@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 public class F9number {
 
@@ -30,6 +32,14 @@ public class F9number {
     }
 
     static List<String> t9Mapper(List<String> codes, List<String> numbers) {
+
+        //     private static final char[] DIGITS = (
+        //                 // ABC     DEF
+        //       "0" + "1" + "222" + "333" +
+        //        // GHI      JKL     MNO
+        //          "444"  + "555" + "666" +
+        //        // PQRS     TUV     WXYZ
+        //          "7777" + "888" + "9999").toCharArray();
         Map<String, Integer> keymap = new HashMap<>();
         keymap.put("A", 2);keymap.put("B", 2);keymap.put("C", 2);
         keymap.put("D", 3);keymap.put("E", 3);keymap.put("F", 3);

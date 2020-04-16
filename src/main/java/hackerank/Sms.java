@@ -7,18 +7,15 @@ import java.util.StringJoiner;
 public class Sms {
     public static void main(String[] args) {
         // Input: String
-        // List<String> Spliited string
+        // List<String> Splitted string
 
-//        String text = "hola que tal?, yo estoy bien! Estoy viendo a ver como puedo programar este programa de SMS que se encarga de dividir en multiples SMS basado en un numero maximo de caracteres y añade que part del mensaje es al final con un espacio excepto en el ultimo que no lo hace y me complica un poco el algoritmo.";
         String text = "hola que tal?, yo estoy bien! Estoy viendo a ver como puedo programar este programa de SMS que se encarga de dividir en multiples SMS basado en un numero maximo de caracteres y añade que part del mensaje es al final con un espacio excepto en el ultimo que no lo hace y me complica un poco el algoritmo adaas.";
         System.out.println(splitSms(text));
-
-
     }
 
     static List<String> splitSms(String s) {
         int maxChar = 160;
-        int reservedChar = 5;
+        int reservedChar = 5; // (1/2)
         int txtLength = maxChar - reservedChar;
 
         List<String> sms = new ArrayList<>();
@@ -33,7 +30,7 @@ public class Sms {
         for (String word : words) {
 
             if (counter == words.length) {
-                txtLength = txtLength - 1;
+                txtLength = txtLength + 1;
             }
 
             if (sb.length() + word.length() + 1 >= txtLength) {
@@ -59,6 +56,7 @@ public class Sms {
 
             msg += "("+(i+1)+"/"+sms.size()+")";
             result.add(msg);
+            System.out.println(msg.length());
         }
 
         return result;

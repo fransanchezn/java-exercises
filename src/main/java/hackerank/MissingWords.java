@@ -15,7 +15,7 @@ public class MissingWords {
         List<String> rmWords = new ArrayList<>(Arrays.asList(t.split(" ")));
 
         for (int i = 0; i < words.size(); i++) { // O(n)
-            if (rmWords.size() < 1) {
+            if (rmWords.isEmpty()) {
                 return words;
             }
 
