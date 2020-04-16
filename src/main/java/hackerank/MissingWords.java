@@ -14,7 +14,7 @@ public class MissingWords {
         List<String> words = new ArrayList<>(Arrays.asList(s.split(" ")));
         List<String> rmWords = new ArrayList<>(Arrays.asList(t.split(" ")));
 
-        for (int i = 0; i < words.size(); i++) {
+        for (int i = 0; i < words.size(); i++) { // O(n)
             if (rmWords.size() < 1) {
                 return words;
             }
@@ -25,7 +25,24 @@ public class MissingWords {
                 rmWords.remove(0);
             }
         }
-
         return words;
+    }
+
+    static List<String> missingWords2(String s, String t) {
+        List<String> words = new ArrayList<>(Arrays.asList(s.split(" ")));
+        String[] rmWords = t.split(" ");
+        List<String> result = new ArrayList<>();
+
+        for (int i = 0 ; i < rmWords.length; i++) {  // O(n)
+            int lastIndex = words.indexOf(rmWords[i]); // O(n)
+            if (lastIndex < 0) {
+                continue;
+            }
+
+            result.addAll(new ArrayList<>(words.subList(0, lastIndex)));
+            words = words.subList(lastIndex + 1, words.size());
+        }
+
+        return result;
     }
 }

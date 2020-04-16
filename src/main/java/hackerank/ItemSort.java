@@ -22,7 +22,6 @@ public class ItemSort {
             inventory.put(items.get(i), ++count);
         }
 
-        System.out.println(inventory);
         List<Map.Entry<Integer, Integer>> list = new LinkedList<>(inventory.entrySet());
         Collections.sort(list, new Comparator<>() {
             @Override
