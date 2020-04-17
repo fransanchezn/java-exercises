@@ -1,18 +1,33 @@
 package concurrency;
 
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 public class Synchronized {
 
     private int counter = 0;
     private static int staticCounter = 0;
+    private Lock lock = new ReentrantLock();
 
     public void count() {
-        System.out.println("Thread: " + Thread.currentThread().getId() + " started!");
         setCounter(getCounter() + 1);
-        System.out.println("Thread: " + Thread.currentThread().getId() + " ended!");
     }
 
     public synchronized void syncCount() {
         count();
+    }
+
+    public void lockCount() {
+        try {
+            if (lock.tryLock(5000l, TimeUnit.SECONDS)) {
+                count();
+            }
+        } catch (InterruptedException e) {
+            System.out.println("Thread " + Thread.currentThread().getId() + " exeception.");
+        } finally {
+            lock.unlock();
+        }
     }
 
     public void syncBlockCount() {
