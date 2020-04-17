@@ -1,16 +1,12 @@
 package hackerank;
 
-import java.sql.Time;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.SortedMap;
 import java.util.TreeMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.stream.IntStream;
 
 public class MultiThreadReadWriter {
 
@@ -21,16 +17,13 @@ public class MultiThreadReadWriter {
         List<String> messages = map.getOrDefault(priority, new LinkedList<>());
         messages.add(message);
         map.put(priority, messages);
+        System.out.println(map);
     }
 
     public String read(long timeout, TimeUnit unit) {
         try {
-            long time = System.currentTimeMillis();
-            System.out.println("read: " + Thread.currentThread().getId());
             lock.tryLock(timeout, unit);
-            System.out.println("read lock: " + Thread.currentThread().getId());
 
-            Thread.sleep(2000l);
             if (map.isEmpty()) {
                 throw new RuntimeException("Empty map");
             }
@@ -49,7 +42,6 @@ public class MultiThreadReadWriter {
         } catch (InterruptedException e) {
             throw new RuntimeException("timeout");
         } finally {
-            System.out.println("read unLock: " + Thread.currentThread().getId());
             lock.unlock();
         }
     }
@@ -61,13 +53,17 @@ public class MultiThreadReadWriter {
         mtrw.write("Hello", 1);
         mtrw.write("are", 2);
 
-        ExecutorService executor = Executors.newFixedThreadPool(2);
-        IntStream.range(0, 4).forEach(i -> executor.submit(() -> {
-            try {
-                System.out.println("Thread" + Thread.currentThread().getId() + " - " +mtrw.read(1l, TimeUnit.SECONDS));
-            } catch (Exception e) {
-                System.out.println("Thread" + Thread.currentThread().getId() + " error.");
-            }
-        }));
+        System.out.println(mtrw.read(0l, TimeUnit.SECONDS));
+        System.out.println(mtrw.read(0l, TimeUnit.SECONDS));
+        System.out.println(mtrw.read(0l, TimeUnit.SECONDS));
+        System.out.println(mtrw.read(0l, TimeUnit.SECONDS));
+//        ExecutorService executor = Executors.newFixedThreadPool(2);
+//        IntStream.range(0, 4).forEach(i -> executor.submit(() -> {
+//            try {
+//                System.out.println("Thread" + Thread.currentThread().getId() + " - " +mtrw.read(1l, TimeUnit.SECONDS));
+//            } catch (Exception e) {
+//                System.out.println("Thread" + Thread.currentThread().getId() + " error.");
+//            }
+//        }));
     }
 }
