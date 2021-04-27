@@ -1,10 +1,11 @@
-package hackerank;
+package hackerrank;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.stream.Collectors;
 
 public class PhoneLetters {
 
@@ -13,7 +14,7 @@ public class PhoneLetters {
         for (String num : input) {
             List<String> results = new ArrayList<>();
             List<String> numbers = new ArrayList<>(Arrays.asList(num.split("")));
-            comb(numbers, 0, new ArrayList<>(), results);
+            comb(numbers, 0, new ArrayList<String>(), results);
             System.out.println(results);
         }
 
@@ -31,7 +32,7 @@ public class PhoneLetters {
 
         // Base case
         if (index >= numbers.size()) {
-            results.add(String.join("", current));
+            results.add(current.stream().collect(Collectors.joining("")));
             return;
         }
 

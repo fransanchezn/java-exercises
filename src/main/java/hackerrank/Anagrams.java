@@ -1,4 +1,4 @@
-package hackerank;
+package hackerrank;
 
 public class Anagrams {
 

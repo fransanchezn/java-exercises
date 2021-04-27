@@ -1,4 +1,4 @@
-package hackerank.tree;
+package hackerrank.tree;
 
 import java.util.Objects;
 

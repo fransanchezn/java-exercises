@@ -1,4 +1,4 @@
-package hackerank;
+package hackerrank;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -1,6 +1,5 @@
-package hackerank;
+package hackerrank;
 
-import java.nio.file.LinkPermission;
 import java.util.ArrayList;
 import java.util.List;
 

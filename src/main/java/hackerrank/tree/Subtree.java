@@ -1,4 +1,4 @@
-package hackerank.tree;
+package hackerrank.tree;
 
 public class Subtree {
 

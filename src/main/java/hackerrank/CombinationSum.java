@@ -1,4 +1,4 @@
-package hackerank;
+package hackerrank;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,7 +13,7 @@ public class CombinationSum {
         Collections.sort(numbers);
 
         List<List<Integer>> result = new ArrayList<>();
-        comSum(numbers, 0, target, new ArrayList<>(), result);
+        comSum(numbers, 0, target, new ArrayList<Integer>(), result);
 
         System.out.println(result);
     }
@@ -38,7 +38,5 @@ public class CombinationSum {
                 current.remove(current.size() - 1);
             }
         }
-
-
     }
 }

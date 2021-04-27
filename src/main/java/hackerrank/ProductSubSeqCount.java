@@ -1,4 +1,4 @@
-package hackerank;
+package hackerrank;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,6 +17,7 @@ public class ProductSubSeqCount {
         List<List<Integer>> result = new ArrayList<>();
         for (int i = 0; i < arr.size(); i++) {
             int count = arr.get(i);
+
             List<Integer> ite = new ArrayList<>();
             ite.add(arr.get(i));
 

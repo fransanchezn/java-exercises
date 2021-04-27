@@ -1,4 +1,4 @@
-package hackerank;
+package hackerrank;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,12 +18,12 @@ public class ItemSort {
     static List<Integer> itemSort(List<Integer> items) {
         Map<Integer, Integer> inventory = new HashMap<>();
         for (int i = 0 ; i < items.size(); i++) {
-            Integer count = inventory.get(items.get(i)) != null ? inventory.get(items.get(i)) : 0;
+            Integer count = inventory.getOrDefault(items.get(i),0);
             inventory.put(items.get(i), ++count);
         }
 
         List<Map.Entry<Integer, Integer>> list = new LinkedList<>(inventory.entrySet());
-        Collections.sort(list, new Comparator<>() {
+        Collections.sort(list, new Comparator<Map.Entry<Integer, Integer>>() {
             @Override
             public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2) {
                 int compareValue = o1.getValue().compareTo(o2.getValue());
