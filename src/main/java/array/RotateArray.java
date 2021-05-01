@@ -3,23 +3,26 @@ package array;
 public class RotateArray {
 
     public static void main(String[] args) {
-        int[] arr = {5, 4, 3, 7};
+        int[] arr = {1, 2, 3, 4, 5 ,6 ,7};
 
-        int[] res = rotateArray(arr, 4);
-        for (int i : res) {
+        rotateArray(arr, 3);
+
+        for(int i : arr) {
             System.out.print(i + ", ");
         }
 
     }
 
-    public static int[] rotateArray(int[] arr, int k) {
-        int[] rot = new int[arr.length];
-
-        for (int i = 0; i < arr.length; i++) {
-            int pos = (i + k) % arr.length;
-            rot[pos] = arr[i];
+    public static void rotateArray(int[] nums, int k) {
+        k %= nums.length;
+        int temp, previous;
+        for (int i = 0; i < k; i++) {
+            previous = nums[nums.length - 1];
+            for (int j = 0; j < nums.length; j++) {
+                temp = nums[j];
+                nums[j] = previous;
+                previous = temp;
+            }
         }
-
-        return rot;
     }
 }
