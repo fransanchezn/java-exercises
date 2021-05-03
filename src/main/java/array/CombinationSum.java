@@ -8,16 +8,20 @@ import java.util.List;
 public class CombinationSum {
 
     public static void main(String[] args) {
-        List<Integer> numbers = new ArrayList<>(Arrays.asList(1, 2, 5, 6));
+        final var numbers = new ArrayList<>(Arrays.asList(1, 2, 5, 6));
         int target = 7;
         Collections.sort(numbers);
 
-        List<List<Integer>> result = new ArrayList<>();
-        comSum(numbers, 0, target, new ArrayList<Integer>(), result);
+        final var result = new ArrayList<List<Integer>>();
+        comSum(numbers, 0, target, new ArrayList<>(), result);
 
         System.out.println(result);
     }
 
+    /**
+     * Given an ORDERED collection of numbers, return all the possible combinations
+     * that sum is equals to the provided target
+     */
     static void comSum(List<Integer> numbers, int index, int target, List<Integer> current, List<List<Integer>> result) {
 
         // Base case 1
@@ -32,7 +36,9 @@ public class CombinationSum {
         }
 
         for (int i = index; i < numbers.size(); i++) {
-            if (i == index || numbers.get(i) != numbers.get(i - 1)) {
+            // Not with itself
+            // Not duplicated
+            if (i == index || !numbers.get(i).equals(numbers.get(i - 1))) {
                 current.add(numbers.get(i));
                 comSum(numbers, i + 1, target - numbers.get(i), current, result);
                 current.remove(current.size() - 1);

@@ -10,9 +10,9 @@ public class MissingWords {
                 "programming Python elegant syntax and dynamic typing"));
     }
 
-    static List<String> missingWords(String s, String t) {
-        List<String> words = new ArrayList<>(Arrays.asList(s.split(" ")));
-        List<String> rmWords = new ArrayList<>(Arrays.asList(t.split(" ")));
+    public static List<String> missingWords(final String s, final String t) {
+        final var words = new ArrayList<>(Arrays.asList(s.split(" ")));
+        final var rmWords = new ArrayList<>(Arrays.asList(t.split(" ")));
 
         for (int i = 0; i < words.size(); i++) { // O(n)
             if (rmWords.isEmpty()) {
@@ -28,10 +28,10 @@ public class MissingWords {
         return words;
     }
 
-    static List<String> missingWords2(String s, String t) {
-        List<String> words = new ArrayList<>(Arrays.asList(s.split(" ")));
-        String[] rmWords = t.split(" ");
-        List<String> result = new ArrayList<>();
+    public static List<String> missingWords2(final String s, final String t) {
+        List<String> words = new ArrayList<>(List.of(s.split(" ")));
+        final var rmWords = t.split(" ");
+        final var result = new ArrayList<String>();
 
         for (int i = 0 ; i < rmWords.length; i++) {  // O(n)
             int lastIndex = words.indexOf(rmWords[i]); // O(n)

@@ -1,31 +1,32 @@
 package array;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class ProductSubSeqCount {
     public static void main(String[] args) {
-        List<Integer> arr = new ArrayList<>(Arrays.asList(new Integer[]{5, 10, 11, 9, 5}));
+        final var arr = List.of(5, 10, 11, 9, 5);
         int k = 5;
 
         System.out.println(kSub(arr, k));
     }
 
-    static List<List<Integer>> kSub(List<Integer> arr, int k) {
-        List<List<Integer>> result = new ArrayList<>();
+    // O(n^2) - time complexity
+    public static List<List<Integer>> kSub(final List<Integer> arr, final int k) {
+        final var result = new ArrayList<List<Integer>>();
+
         for (int i = 0; i < arr.size(); i++) {
             int count = arr.get(i);
 
-            List<Integer> ite = new ArrayList<>();
+            final var ite = new ArrayList<Integer>();
             ite.add(arr.get(i));
 
             if (count % k == 0) {
                 result.addAll(Collections.singletonList(ite));
             }
 
-            for (int j = i+1; j < arr.size(); j++) {
+            for (int j = i + 1; j < arr.size(); j++) {
                 count += arr.get(j);
                 ite.add(arr.get(j));
 

@@ -2,7 +2,19 @@ package array;
 
 public class RemoveDuplicateArray {
 
-    public static int removeDuplicates2(int[] nums) {
+    public static void main (final String[] args) {
+        final int arr[] = {1, 2, 2, 3, 4, 4, 4, 5, 5};
+        final var n = removeDuplicates2(arr);
+
+        // Print updated array
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+    }
+
+    // O(n^2) - time complexity
+    // O(1) - space complexity
+    public static int removeDuplicates2(final int[] nums) {
         if (nums.length == 0 || nums.length == 1) {
             return nums.length;
         }
@@ -27,7 +39,9 @@ public class RemoveDuplicateArray {
         }
     }
 
-    public static int removeDuplicates(int arr[], int n) {
+    // O(n) - time complexity
+    // O(1) - space complexity
+    public static int removeDuplicates(final int arr[], final int n) {
         if (n == 0 || n == 1) {
             return n;
         }
@@ -37,23 +51,14 @@ public class RemoveDuplicateArray {
 
         // Doing same as done in Method 1
         // Just maintaining another updated index i.e. j
-        for (int i = 0; i < n-1; i++)
-            if (arr[i] != arr[i+1])
+        for (int i = 0; i < n - 1; i++) {
+            if (arr[i] != arr[i + 1]) {
                 arr[j++] = arr[i];
+            }
+        }
 
-        arr[j++] = arr[n-1];
+        arr[j++] = arr[n - 1];
 
         return j;
-    }
-
-    public static void main (final String[] args) {
-        int arr[] = {1, 2, 2, 3, 4, 4, 4, 5, 5};
-        int n = arr.length;
-
-        n = removeDuplicates2(arr);
-
-        // Print updated array
-        for (int i = 0; i < n; i++)
-            System.out.print(arr[i]+" ");
     }
 }

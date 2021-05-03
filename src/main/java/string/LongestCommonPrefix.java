@@ -8,22 +8,22 @@ public class LongestCommonPrefix {
         System.out.println(longestCommonPrefix(input));
     }
 
-    public static String longestCommonPrefix(String[] strs) {
+    public static String longestCommonPrefix(final String[] strs) {
         if (strs.length == 0) {
             return "";
         }
 
-        var commonPrefix = "";
+        final var commonPrefix = new StringBuilder();
         for (int i = 0; i < strs[0].length(); i++) {
             var charToCompare = strs[0].charAt(i);
             for (int j = 1; j < strs.length; j++) {
                 if (i >= strs[j].length() || charToCompare != strs[j].charAt(i)) {
-                    return commonPrefix;
+                    return commonPrefix.toString();
                 }
             }
-            commonPrefix += charToCompare;
+            commonPrefix.append(charToCompare);
         }
 
-        return commonPrefix;
+        return commonPrefix.toString();
     }
 }

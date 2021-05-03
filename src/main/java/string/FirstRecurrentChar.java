@@ -11,6 +11,8 @@ public class FirstRecurrentChar {
         System.out.println(result);
     }
 
+    // O(n) - time complexity
+    // O(n) - space complexity
     public static String firstRecurrentChat(final String a) {
         final var map = new HashMap<>();
         final var c = a.split("");
