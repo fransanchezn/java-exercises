@@ -1,39 +1,44 @@
 package array;
 
+import java.util.Arrays;
+
 public class RotateArray {
 
     public static void main(String[] args) {
-        int[] arr = {1, 2, 3, 4, 5 ,6 ,7};
+        var nums = new int[] { 1,2,3,4,5,6,7 };
+        rotate(nums, 3);
 
-        rotateArray(arr, 3);
-
-        for(int i : arr) {
-            System.out.print(i + ", ");
-        }
-
+        System.out.println("nums:" + Arrays.toString(nums));
     }
 
-    // O(n^2) - time complexity
-    // O(1) - space complexity
-    public static void rotateArray(final int[] nums, final int k) {
-        final var rot = k % nums.length;
+    /*
+    Optimal solution:
+in: [1,2,3,4,5,6,7] k=3
+1. reverse all: [7,6,5,4,3,2,1]
+2. reverse 0-k: [5,6,7,4,3,2,1]
+3. reverse k-end: [5,6,7,1,2,3,4]
+     */
+    public static void rotate(int[] nums, int k) {
+        if (nums.length < 2) {
+            return;
+        }
 
-        int temp, previous;
-        for (int i = 0; i < rot; i++) {
-            previous = nums[nums.length - 1];
-            for (int j = 0; j < nums.length; j++) {
-                temp = nums[j];
-                nums[j] = previous;
-                previous = temp;
-            }
+        var rotations = k%nums.length;
+        for (int i = 0; i < rotations; i++) {
+            rotateOne(nums);
         }
     }
 
-    public static void rotateArray2(final int[] nums, final int k) {
-        final var rot = k % nums.length;
-
-        for (int i = 0; i < nums.length; i++) {
-
+    private static void rotateOne(int[] nums) {
+        var currentNumber = nums[0];
+        var nextNumber = nums[1];
+        var arrayLength = nums.length;
+        for (int i = 0; i < arrayLength; i++) {
+            var nextPosition = (i + 1) % arrayLength;
+            nextNumber = nums[nextPosition];
+            nums[nextPosition] = currentNumber;
+            currentNumber = nextNumber;
         }
     }
 }
+
