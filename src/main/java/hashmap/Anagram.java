@@ -1,7 +1,5 @@
 package hashmap;
 
-import java.util.HashMap;
-
 public class Anagram {
     public static void main(String[] args) {
         System.out.println(isAnagram("aaaaaa", "aaaaaa"));
