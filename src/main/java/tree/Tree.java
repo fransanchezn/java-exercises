@@ -13,18 +13,18 @@ public class Tree {
         BiTreeNode<Integer> parentNode;
 
         do {
-            if (nextNode.getData() > data) {
-                if (nextNode.getLeft() != null) {
-                    nextNode = nextNode.getLeft();
+            if (nextNode.data > data) {
+                if (nextNode.left != null) {
+                    nextNode = nextNode.left;
                 } else {
-                    nextNode.setLeft(new BiTreeNode(data));
+                    nextNode.left = new BiTreeNode(data);
                     break;
                 }
             } else {
-                if (nextNode.getRight() != null) {
-                    nextNode = nextNode.getRight();
+                if (nextNode.right != null) {
+                    nextNode = nextNode.right;
                 } else {
-                    nextNode.setRight(new BiTreeNode(data));
+                    nextNode.right = new BiTreeNode(data);
                     break;
                 }
             }
@@ -40,9 +40,9 @@ public class Tree {
         t.add(2);
         t.add(6);
 
-        System.out.println(t.getRoot().getLeft().getData());
-        System.out.println(t.getRoot().getRight().getData());
+        System.out.println(t.getRoot().left.data);
+        System.out.println(t.getRoot().right.data);
 
-        System.out.println(t.getRoot().getRight().getRight().getData());
+        System.out.println(t.getRoot().right.right.data);
     }
 }

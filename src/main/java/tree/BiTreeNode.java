@@ -3,36 +3,12 @@ package tree;
 import java.util.Objects;
 
 public class BiTreeNode<T> {
-    T data;
-    BiTreeNode right;
-    BiTreeNode left;
+    public T data;
+    public BiTreeNode<T> right;
+    public BiTreeNode<T> left;
 
     BiTreeNode(T data) {
         this.data = data;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
-
-    public BiTreeNode getRight() {
-        return right;
-    }
-
-    public void setRight(BiTreeNode right) {
-        this.right = right;
-    }
-
-    public BiTreeNode getLeft() {
-        return left;
-    }
-
-    public void setLeft(BiTreeNode left) {
-        this.left = left;
     }
 
     @Override
