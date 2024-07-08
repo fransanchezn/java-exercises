@@ -1,6 +1,6 @@
 package tree;
 
-public class SameTree {
+public class SameBinaryTree {
     public static void main(String[] args) {
         final var left01 = new TreeNode(2);
         final var right01 = new TreeNode(3);
