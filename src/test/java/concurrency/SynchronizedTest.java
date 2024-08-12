@@ -1,5 +1,7 @@
 package concurrency;
 
+import exercises.concurrency.ConcurrentUtils;
+import exercises.concurrency.Synchronized;
 import org.junit.jupiter.api.Test;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
