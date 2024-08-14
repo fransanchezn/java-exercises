@@ -1,4 +1,4 @@
-package exercises.arrayandstrings;
+package exercises.arrayandstrings.prefixsum;
 
 // 643. Maximum Average Subarray I
 public class FindMaxAverage {

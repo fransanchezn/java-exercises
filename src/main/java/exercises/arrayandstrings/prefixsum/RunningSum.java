@@ -1,4 +1,4 @@
-package exercises.arrayandstrings;
+package exercises.arrayandstrings.prefixsum;
 
 import java.util.Arrays;
 

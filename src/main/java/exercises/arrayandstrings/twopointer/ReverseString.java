@@ -1,4 +1,4 @@
-package exercises.arrayandstrings;
+package exercises.arrayandstrings.twopointer;
 
 // 344. Reverse String
 public class ReverseString {

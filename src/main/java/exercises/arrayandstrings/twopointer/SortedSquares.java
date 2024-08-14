@@ -1,4 +1,4 @@
-package exercises.arrayandstrings;
+package exercises.arrayandstrings.twopointer;
 
 import java.util.Arrays;
 
