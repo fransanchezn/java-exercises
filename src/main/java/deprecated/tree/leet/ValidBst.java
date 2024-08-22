@@ -6,11 +6,11 @@ public class ValidBst {
 
     }
 
-    public boolean isValidBST(TreeNode root) {
+    public boolean isValidBST(LeetTreeNode root) {
         return isValidBSTRec(root, null, null);
     }
 
-    public boolean isValidBSTRec(TreeNode root, Integer max, Integer min) {
+    public boolean isValidBSTRec(LeetTreeNode root, Integer max, Integer min) {
         if (root == null) {
             return true;
         } else if ((max != null && root.val >= max) || (min != null && root.val <= min)) {

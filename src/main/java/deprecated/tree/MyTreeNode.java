@@ -3,28 +3,28 @@ package deprecated.tree;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TreeNode<T> {
+public class MyTreeNode<T> {
     T data;
-    TreeNode parent;
-    List<TreeNode> children;
+    MyTreeNode parent;
+    List<MyTreeNode> children;
 
-    TreeNode(T data) {
+    MyTreeNode(T data) {
         this.data = data;
         children = new ArrayList<>();
     }
 
-    TreeNode(T data, TreeNode parent) {
+    MyTreeNode(T data, MyTreeNode parent) {
         this.data = data;
         this.parent = parent;
         children = new ArrayList<>();
     }
 
-    public TreeNode<T> addChild(TreeNode child) {
+    public MyTreeNode<T> addChild(MyTreeNode child) {
         children.add(child);
         return child;
     }
 
-    public List<TreeNode> addChildren(List<TreeNode> children) {
+    public List<MyTreeNode> addChildren(List<MyTreeNode> children) {
         this.children.addAll(children);
         return this.children;
     }
@@ -37,19 +37,19 @@ public class TreeNode<T> {
         this.data = data;
     }
 
-    public TreeNode getParent() {
+    public MyTreeNode getParent() {
         return parent;
     }
 
-    public void setParent(TreeNode parent) {
+    public void setParent(MyTreeNode parent) {
         this.parent = parent;
     }
 
-    public List<TreeNode> getChildren() {
+    public List<MyTreeNode> getChildren() {
         return children;
     }
 
-    public void setChildren(List<TreeNode> children) {
+    public void setChildren(List<MyTreeNode> children) {
         this.children = children;
     }
 }
