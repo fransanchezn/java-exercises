@@ -8,7 +8,7 @@ public class Synchronized {
 
     private int counter = 0;
     private static int staticCounter = 0;
-    private Lock lock = new ReentrantLock();
+    private final Lock lock = new ReentrantLock();
 
     public void count() {
         setCounter(getCounter() + 1);
@@ -20,11 +20,11 @@ public class Synchronized {
 
     public void lockCount() {
         try {
-            if (lock.tryLock(5000l, TimeUnit.SECONDS)) {
+            if (lock.tryLock(5_000L, TimeUnit.SECONDS)) {
                 count();
             }
         } catch (InterruptedException e) {
-            System.out.println("Thread " + Thread.currentThread().getId() + " exeception.");
+            System.out.println("Thread " + Thread.currentThread().threadId() + " exeception.");
         } finally {
             lock.unlock();
         }
