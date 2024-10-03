@@ -37,12 +37,10 @@ public class GameOriginal implements IGame {
     }
 
     public void add(String playerName) {
-
-
         players.add(playerName);
         places[howManyPlayers()] = 0;
         purses[howManyPlayers()] = 0;
-        inPenaltyBox[howManyPlayers()] = false;
+        inPenaltyBox[howManyPlayers() - 1] = false;
 
         System.out.println(playerName + " was added");
         System.out.println("They are player number " + players.size());
@@ -117,6 +115,7 @@ public class GameOriginal implements IGame {
         if (inPenaltyBox[currentPlayer]) {
             if (isGettingOutOfPenaltyBox) {
                 System.out.println("Answer was correct!!!!");
+                inPenaltyBox[currentPlayer] = false;
                 purses[currentPlayer]++;
                 System.out.println(players.get(currentPlayer)
                         + " now has "
@@ -162,8 +161,7 @@ public class GameOriginal implements IGame {
         return true;
     }
 
-
     private boolean didPlayerWin() {
-        return purses[currentPlayer] == 6;
+        return purses[currentPlayer] != 6;
     }
 }
