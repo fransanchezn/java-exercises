@@ -11,6 +11,7 @@ public class Logger {
     }
 
     public static Logger getInstance() {
+        // Required sync if this is initialized in multiple threads.
         synchronized(Logger.class) {
             if (instance == null) {
                 System.out.println("Logger new instance");
