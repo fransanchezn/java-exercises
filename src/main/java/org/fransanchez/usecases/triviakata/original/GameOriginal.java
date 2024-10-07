@@ -1,8 +1,8 @@
-package org.fransanchez.usecases.gamekata.original;
+package org.fransanchez.usecases.triviakata.original;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import org.fransanchez.usecases.gamekata.IGame;
+import org.fransanchez.usecases.triviakata.IGame;
 
 // TODO refactor me
 public class GameOriginal implements IGame {

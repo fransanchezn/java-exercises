@@ -1,4 +1,4 @@
-package org.fransanchez.usecases.gamekata;
+package org.fransanchez.usecases.triviakata;
 
 class Player {
     private final String name;

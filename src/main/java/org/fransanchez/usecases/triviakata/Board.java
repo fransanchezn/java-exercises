@@ -1,4 +1,4 @@
-package org.fransanchez.usecases.gamekata;
+package org.fransanchez.usecases.triviakata;
 
 import java.util.ArrayList;
 import java.util.List;

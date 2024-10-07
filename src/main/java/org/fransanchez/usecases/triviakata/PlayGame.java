@@ -1,4 +1,4 @@
-package org.fransanchez.usecases.gamekata;
+package org.fransanchez.usecases.triviakata;
 
 import java.util.Random;
 import java.util.Scanner;

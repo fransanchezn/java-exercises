@@ -1,10 +1,10 @@
-package org.fransanchez.usecases.gamekata;
+package org.fransanchez.usecases.triviakata;
 
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Random;
-import org.fransanchez.usecases.gamekata.original.GameOriginal;
+import org.fransanchez.usecases.triviakata.original.GameOriginal;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
