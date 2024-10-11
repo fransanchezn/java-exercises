@@ -2,6 +2,7 @@ package org.fransanchez.designpattern.creational.abstractfactory.products.concre
 
 import org.fransanchez.designpattern.creational.abstractfactory.products.abstracts.Link;
 
+// Concrete product
 public class MarkdownLink extends Link {
 
     public MarkdownLink(final String text, final String url) {

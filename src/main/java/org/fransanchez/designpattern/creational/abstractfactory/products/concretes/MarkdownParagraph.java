@@ -2,6 +2,7 @@ package org.fransanchez.designpattern.creational.abstractfactory.products.concre
 
 import org.fransanchez.designpattern.creational.abstractfactory.products.abstracts.Paragraph;
 
+// Concrete product
 public class MarkdownParagraph extends Paragraph {
 
     public MarkdownParagraph(final String text) {

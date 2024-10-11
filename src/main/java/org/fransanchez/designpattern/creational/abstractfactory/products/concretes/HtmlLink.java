@@ -2,6 +2,7 @@ package org.fransanchez.designpattern.creational.abstractfactory.products.concre
 
 import org.fransanchez.designpattern.creational.abstractfactory.products.abstracts.Link;
 
+// Concrete product
 public class HtmlLink extends Link {
 
     public HtmlLink(final String text, final String url) {

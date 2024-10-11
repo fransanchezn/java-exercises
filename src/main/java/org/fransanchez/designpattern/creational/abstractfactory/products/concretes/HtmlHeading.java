@@ -2,6 +2,7 @@ package org.fransanchez.designpattern.creational.abstractfactory.products.concre
 
 import org.fransanchez.designpattern.creational.abstractfactory.products.abstracts.Heading;
 
+// Concrete product
 public class HtmlHeading extends Heading {
 
     public HtmlHeading(final int level, final String text) {

@@ -6,6 +6,7 @@ import org.fransanchez.designpattern.creational.abstractfactory.products.concret
 import org.fransanchez.designpattern.creational.abstractfactory.products.concretes.HtmlLink;
 import org.fransanchez.designpattern.creational.abstractfactory.products.concretes.HtmlParagraph;
 
+// Concrete factory
 public class HtmlElementFactory implements ElementFactory {
     @Override
     public Element createHeading(final int level, final String text) {

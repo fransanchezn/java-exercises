@@ -6,6 +6,7 @@ import org.fransanchez.designpattern.creational.abstractfactory.products.concret
 import org.fransanchez.designpattern.creational.abstractfactory.products.concretes.MarkdownLink;
 import org.fransanchez.designpattern.creational.abstractfactory.products.concretes.MarkdownParagraph;
 
+// Concrete factory
 public class MarkdownElementFactory implements ElementFactory {
 
     @Override
