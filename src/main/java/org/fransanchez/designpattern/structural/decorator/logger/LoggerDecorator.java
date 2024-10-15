@@ -2,10 +2,11 @@ package org.fransanchez.designpattern.structural.decorator.logger;
 
 // Decorator
 public class LoggerDecorator implements Logger {
-    private final Logger decorator;
+    private Logger decorator;
 
-    public LoggerDecorator(final Logger decorator) {
+    public LoggerDecorator withDecorator(final Logger decorator) {
         this.decorator = decorator;
+        return this;
     }
 
     @Override

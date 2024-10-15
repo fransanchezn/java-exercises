@@ -6,13 +6,11 @@ import java.time.Clock;
 public class DateTimeLoggerDecorator extends LoggerDecorator {
     private final Clock clock;
 
-    public DateTimeLoggerDecorator(final Logger decorator) {
-        super(decorator);
+    public DateTimeLoggerDecorator() {
         this.clock = Clock.systemDefaultZone();
     }
 
-    public DateTimeLoggerDecorator(final Logger decorator, final Clock clock) {
-        super(decorator);
+    public DateTimeLoggerDecorator(final Clock clock) {
         this.clock = clock;
     }
 
