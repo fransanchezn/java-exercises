@@ -11,6 +11,11 @@ public class SinglyListNode<T> {
         this.value = value;
     }
 
+    public SinglyListNode(final T value, final SinglyListNode<T> next) {
+        this.next = next;
+        this.value = value;
+    }
+
     public static <T> void addNode(final SinglyListNode<T> prevNode, final  SinglyListNode<T> nodeToAdd) {
         nodeToAdd.next = prevNode.next;
         prevNode.next = nodeToAdd;
