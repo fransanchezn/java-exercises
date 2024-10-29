@@ -1,4 +1,4 @@
-package org.fransanchez.exercises.hashing;
+package org.fransanchez.exercises.arrayandstrings.twopointer;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -20,9 +20,5 @@ public class IntersectionTwoArrays {
         }
 
         return intersection.stream().mapToInt(i -> i).toArray();
-    }
-
-    public static void main(String[] args) {
-
     }
 }
