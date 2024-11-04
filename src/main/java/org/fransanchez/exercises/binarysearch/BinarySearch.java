@@ -4,9 +4,9 @@ package org.fransanchez.exercises.binarysearch;
 public class BinarySearch {
     public int search(final int[] nums, final int target) {
         int left = 0;
-        int right = nums.length -1;
+        int right = nums.length - 1;
         while (left <= right) {
-            final var mid = left + (right - left)  / 2;
+            final var mid = (right + left)  / 2;
             if (nums[mid] == target) {
               return mid;
             } else if (nums[mid] > target) {
