@@ -3,10 +3,14 @@ package org.fransanchez.exercises.binarysearch;
 // 875. Koko Eating Bananas
 public class KokoEatingBananas {
 
+    // Best case scenario 1 banana per hour
+    // Worst case scenario max banana per hour
+    // Use binary search to find the lowest speed
     public int minEatingSpeed(final int[] piles, final int h) {
         int left = 1;
         int right = 0;
 
+        // Find the max pile bananas
         for (int bananas: piles) {
             right = Math.max(bananas, right);
         }
