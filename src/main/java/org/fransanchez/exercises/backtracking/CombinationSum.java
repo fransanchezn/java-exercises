@@ -27,4 +27,21 @@ public class CombinationSum {
             }
         }
     }
+
+    private void backtrack2(final List<Integer> curr, final int index, final int[] candidates, final int target, final List<List<Integer>> ans) {
+        if (target == 0) {
+            ans.add(new ArrayList<>(curr));
+            return;
+        } else if (index >= candidates.length || target < 0) {
+            return;
+        }
+
+        // Take next number
+        curr.add(candidates[index]);
+        backtrack2(curr, index, candidates, target - candidates[index], ans);
+
+        // Don't take next number
+        curr.removeLast();
+        backtrack2(curr, index + 1, candidates, target, ans);
+    }
 }

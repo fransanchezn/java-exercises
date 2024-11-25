@@ -1,4 +1,4 @@
-package org.fransanchez.exercises.trees.binarysearchtree;
+package org.fransanchez.exercises.trees.binarytrees.binarysearchtree;
 
 import org.fransanchez.exercises.trees.TreeNode;
 import java.util.ArrayList;

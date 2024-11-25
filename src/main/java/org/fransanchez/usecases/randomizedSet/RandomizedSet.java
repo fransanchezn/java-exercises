@@ -1,12 +1,9 @@
-package org.fransanchez.usecases.RandomizedSet;
+package org.fransanchez.usecases.randomizedSet;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
-import java.util.random.RandomGenerator;
-import java.util.stream.IntStream;
 
 public class RandomizedSet {
     final List<Integer> values;

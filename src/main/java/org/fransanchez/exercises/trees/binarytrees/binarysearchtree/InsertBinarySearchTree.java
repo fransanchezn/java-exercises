@@ -1,4 +1,4 @@
-package org.fransanchez.exercises.trees.binarysearchtree;
+package org.fransanchez.exercises.trees.binarytrees.binarysearchtree;
 
 import org.fransanchez.exercises.trees.TreeNode;
 
@@ -41,9 +41,9 @@ public class InsertBinarySearchTree {
         }
 
         if (node.val > val) {
-            return node.left == null? node : search(node.left, val);
+            return node.left == null ? node : search(node.left, val);
         } else {
-            return node.right == null? node : search(node.right, val);
+            return node.right == null ? node : search(node.right, val);
         }
     }
 

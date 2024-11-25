@@ -42,5 +42,4 @@ public class ClimbingStairs {
     public static void main(String[] args) {
         System.out.println(new ClimbingStairs().optimized(45));
     }
-
 }

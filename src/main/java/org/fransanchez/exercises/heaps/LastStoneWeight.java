@@ -23,7 +23,7 @@ public class LastStoneWeight {
             }
         }
 
-        final var lastStone = heap.remove(); // O(log n)
+        final var lastStone = heap.peek(); // O(1)
         return lastStone == null ? 0 : lastStone;
     }
 

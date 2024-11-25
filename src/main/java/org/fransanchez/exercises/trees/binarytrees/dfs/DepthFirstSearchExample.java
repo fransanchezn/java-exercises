@@ -9,7 +9,6 @@ public class DepthFirstSearchExample {
         }
 
         System.out.println("(Do work here) Node.val: " + node.val);
-
         preorderDfs(node.left);
         preorderDfs(node.right);
     }

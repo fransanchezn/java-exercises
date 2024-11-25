@@ -37,7 +37,6 @@ public class KthLargestElementStream {
 
     public static void main(final String[] args) {
         final var sut = new KthLargestElementStream(3, new int[] { 4, 5, 8, 2 });
-
         System.out.println(sut.add(3));
         System.out.println(sut.add(5));
         System.out.println(sut.add(10));
