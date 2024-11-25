@@ -1,6 +1,5 @@
 package org.fransanchez.usecases.triviakata;
 
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Random;

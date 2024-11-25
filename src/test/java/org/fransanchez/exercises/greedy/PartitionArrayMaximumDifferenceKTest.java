@@ -1,6 +1,5 @@
 package org.fransanchez.exercises.greedy;
 
-import org.fransanchez.exercises.greedy.PartitionArrayMaximumDifferenceK;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

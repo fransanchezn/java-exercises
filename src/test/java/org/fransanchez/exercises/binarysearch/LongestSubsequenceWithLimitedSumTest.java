@@ -1,6 +1,5 @@
 package org.fransanchez.exercises.binarysearch;
 
-import org.fransanchez.exercises.binarysearch.LongestSubsequenceWithLimitedSum;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;

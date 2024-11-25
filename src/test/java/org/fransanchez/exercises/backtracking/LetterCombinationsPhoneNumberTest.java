@@ -1,6 +1,5 @@
 package org.fransanchez.exercises.backtracking;
 
-
 import java.util.List;
 import org.fransanchez.exercises.backtracking.LetterCombinationsPhoneNumber;
 import org.junit.jupiter.api.Test;

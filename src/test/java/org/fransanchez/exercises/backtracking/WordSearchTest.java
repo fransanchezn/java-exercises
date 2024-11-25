@@ -1,6 +1,5 @@
 package org.fransanchez.exercises.backtracking;
 
-import org.fransanchez.exercises.backtracking.WordSearch;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;

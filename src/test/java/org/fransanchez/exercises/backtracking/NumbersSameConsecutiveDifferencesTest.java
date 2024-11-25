@@ -1,6 +1,5 @@
 package org.fransanchez.exercises.backtracking;
 
-import org.fransanchez.exercises.backtracking.NumbersSameConsecutiveDifferences;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
