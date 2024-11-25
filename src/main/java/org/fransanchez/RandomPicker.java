@@ -1,7 +1,5 @@
 package org.fransanchez;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
