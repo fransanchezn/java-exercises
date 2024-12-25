@@ -1,35 +1,29 @@
 package org.fransanchez.exercises.hashing;
 
+import java.util.Arrays;
+
 // 242. Valid Anagram
 public class Anagram {
     public static void main(String[] args) {
         System.out.println(isAnagram("aaaaaa", "aaaaaa"));
     }
 
-    private static boolean isAnagram(final String s, final String t) {
+    public static boolean isAnagram(final String s, final String t) {
         if (s.length() != t.length()) {
             return false;
         }
 
-        final var lettersHash = new int[26];
-
+        final var dictionary = new int[26];
+        final var sLetters = s.toCharArray();
+        final var tLetters = t.toCharArray();
         for (int i = 0; i < s.length(); i++) {
-            // Populate letters hash table
-            final var letterAnagram = s.charAt(i);
-            lettersHash[letterAnagram -'a']++;
+            final var sLetter = sLetters[i];
+            dictionary[sLetter - 'a'] += 1;
 
-            // Subtract letters hash table
-            final var letterInput = t.charAt(i);
-            lettersHash[letterInput -'a']--;
+            final var tLetter = tLetters[i];
+            dictionary[tLetter - 'a'] -= 1;
         }
 
-        // Check that all letters have been used
-        for (int hash : lettersHash) {
-            if (hash != 0) {
-                return false;
-            }
-        }
-
-        return true;
+        return Arrays.stream(dictionary).allMatch(i -> i == 0);
     }
 }
