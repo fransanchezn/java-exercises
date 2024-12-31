@@ -12,10 +12,10 @@ public class ShortestPathBinaryMatrix {
         }
 
         final var n = grid.length;
-        final boolean[][] seen = new boolean[n][n];
+        final boolean[][] visited = new boolean[n][n];
         final var queue = new LinkedList<State>();
 
-        seen[0][0] = true;
+        visited[0][0] = true;
         queue.add(new State(0, 0, 1));
 
         while(!queue.isEmpty()) {
@@ -29,8 +29,8 @@ public class ShortestPathBinaryMatrix {
                 final var nextCol = node.col + direction[1];
                 final var nextStep = node.steps + 1;
 
-                if (isValid(nextRow, nextCol, grid) && !seen[nextRow][nextCol]) {
-                    seen[nextRow][nextCol] = true;
+                if (isValid(nextRow, nextCol, grid) && !visited[nextRow][nextCol]) {
+                    visited[nextRow][nextCol] = true;
                     queue.add(new State(nextRow, nextCol, nextStep));
                 }
             }

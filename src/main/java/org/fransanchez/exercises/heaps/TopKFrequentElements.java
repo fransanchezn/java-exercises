@@ -6,7 +6,7 @@ import java.util.PriorityQueue;
 
 // 347. Top K Frequent Elements
 public class TopKFrequentElements {
-    public int[] topKFrequent(final int[] nums, int k) {
+    public int[] topKFrequent(final int[] nums, final int k) {
         final var frequency = new HashMap<Integer, Integer>();
 
         for (var num : nums) { // O(n)
