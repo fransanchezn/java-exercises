@@ -1,4 +1,4 @@
-package org.fransanchez.exercises.arrayandstrings.slidingwindow;
+package org.fransanchez.exercises.arrayandstrings.slidingwindow.variable;
 
 // 1004. Max Consecutive Ones III
 // Moving Sliding window

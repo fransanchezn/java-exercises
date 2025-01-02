@@ -1,4 +1,4 @@
-package org.fransanchez.exercises.arrayandstrings.slidingwindow;
+package org.fransanchez.exercises.arrayandstrings.slidingwindow.variable;
 
 // 209. Minimum Size Subarray Sum
 // Moving sliding window
@@ -23,8 +23,7 @@ public class MinimumSizeSubarraySum {
 
     public static void main(final String[] args) {
         final var sut = new MinimumSizeSubarraySum();
-        final var result = sut.minSubArrayLen(7, new int[] { 2,3,1,2,4,3 });
-
+        final var result = sut.minSubArrayLen(11, new int[] { 1,1,1,1,1,1,1,1 });
         System.out.println(result);
     }
 }

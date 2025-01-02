@@ -1,4 +1,4 @@
-package org.fransanchez.exercises.arrayandstrings.slidingwindow;
+package org.fransanchez.exercises.arrayandstrings.slidingwindow.fix;
 
 import java.util.HashSet;
 import java.util.Set;

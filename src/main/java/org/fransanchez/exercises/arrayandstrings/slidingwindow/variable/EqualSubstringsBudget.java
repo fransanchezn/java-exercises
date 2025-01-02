@@ -1,4 +1,4 @@
-package org.fransanchez.exercises.arrayandstrings.slidingwindow;
+package org.fransanchez.exercises.arrayandstrings.slidingwindow.variable;
 
 // 1208. Get Equal Substrings Within Budget
 // Moving sliding window
