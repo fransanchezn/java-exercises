@@ -4,7 +4,7 @@ package org.fransanchez.exercises.arrayandstrings.prefixsum;
 public class FindMaxAverage {
     // Input: nums = [1,12,-5,-6,50,3], k = 4
     // Output: 12.75000
-    // Explanation: Maximum average is (12 - 5 - 6 + 50) / 4 = 51 / 4 = 12.75
+    // Explanation: Maximum average is (12 - 5 - 6 + 50) = 51 / 4 = 12.75
     public double findMaxAverage(final int[] nums, final int k) {
         var count = 0;
         for (int i = 0; i < k; i++) {
