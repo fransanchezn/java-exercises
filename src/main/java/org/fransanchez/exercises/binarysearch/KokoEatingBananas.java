@@ -16,7 +16,7 @@ public class KokoEatingBananas {
         }
 
         while (left <= right) {
-            int mid = left + (right - left) / 2;
+            int mid = (right + left) / 2;
             if (check(mid, piles, h)) {
                 right = mid - 1;
             } else {

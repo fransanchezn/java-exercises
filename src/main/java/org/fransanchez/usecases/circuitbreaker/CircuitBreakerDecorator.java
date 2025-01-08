@@ -8,7 +8,7 @@ public class CircuitBreakerDecorator {
             if (circuitBreaker.allowRequest()) {
                 try {
                     System.out.println("CircuitBreakerDecorator process");
-                    final var result = (R) function.apply(t);
+                    final var result = function.apply(t);
                     circuitBreaker.onSuccess();
                     return result;
                 } catch(final Exception ex) {

@@ -7,7 +7,7 @@ public class SearchInsertPosition {
         var right = nums.length;
 
         while (left < right) {
-            final var mid = left + (right - left) / 2;
+            final var mid = (right + left) / 2;
             if (nums[mid] >= target) {
                 right = mid;
             } else {

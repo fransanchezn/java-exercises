@@ -29,7 +29,7 @@ public class LongestSubsequenceWithLimitedSum {
         int right = arr.length;
 
         while (left < right) {
-            final var mid = left + (right - left) / 2;
+            final var mid = (right + left) / 2;
             if (arr[mid] >= target) {
                 right = mid;
             } else {

@@ -16,12 +16,11 @@ public class SuccessfulPairsSpellsPotions {
         return result;
     }
 
-
     private int search(int [] arr, final long target) {
         int left = 0;
         int right = arr.length ;
         while(left < right) {
-            final var mid = left + (right - left) / 2;
+            final var mid = (right + left) / 2;
             if (arr[mid] >= target) {
                 right = mid;
             } else {
