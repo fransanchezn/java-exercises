@@ -5,27 +5,20 @@ import org.fransanchez.exercises.trees.TreeNode;
 // 1448. Count Good Nodes in Binary Tree
 public class CountGoodNodesBinaryTree {
     public int goodNodes(final TreeNode root) {
-        if (root == null) {
-            return 0;
-        }
-
-        return goodNodes(root, root.val);
+        return dfs(root, root.val);
     }
 
-    private int goodNodes(final TreeNode node, final int maxVal) {
+    private int dfs(final TreeNode node, final int maxValue) {
         if (node == null) {
             return 0;
         }
 
-        final var maxValue = Math.max(maxVal, node.val);
+        // PreOrder Traverse
+        var result = (node.val >= maxValue) ? 1 : 0;
 
-        final var left = goodNodes(node.left, maxValue);
-        final var right = goodNodes(node.right, maxValue);
-
-        var result = left + right;
-        if (maxValue <= node.val) {
-            result++;
-        }
+        final var currentMaxValue = Math.max(maxValue, node.val);
+        result += dfs(node.left, currentMaxValue);
+        result += dfs(node.right, currentMaxValue);
 
         return result;
     }

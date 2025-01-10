@@ -4,32 +4,22 @@ import org.fransanchez.exercises.trees.TreeNode;
 
 // 543. Diameter of Binary Tree
 public class DiameterBinaryTree {
-    private int diameter = 0;
+    private int maxDiameter = 0;
 
     public int diameterOfBinaryTree(final TreeNode root) {
-        longestPath(root);
-        return diameter;
+        dfs(root);
+        return maxDiameter;
     }
 
-    private int longestPath(final TreeNode node) {
+    private int dfs(final TreeNode node) {
         if (node == null) {
             return 0;
         }
 
-        final var left = longestPath(node.left);
-        final var right = longestPath(node.right);
+        final var left = dfs(node.left);
+        final var right = dfs(node.right);
+        maxDiameter = Math.max(maxDiameter, left + right);
 
-        diameter = Math.max(diameter, left + right);
-
-        return Math.max(left, right) + 1;
-    }
-
-    public static void main(String[] args) {
-        final var root = TreeNode.of(new Integer[] { 4,2,null,3,1,null,null,5 });
-
-        final var sut = new DiameterBinaryTree();
-        final var result = sut.diameterOfBinaryTree(root);
-
-        System.out.println(result);
+        return 1 + Math.max(left, right);
     }
 }
