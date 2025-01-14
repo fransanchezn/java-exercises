@@ -28,6 +28,7 @@ public class OpenExchangeRateClient {
 
     public Optional<OpenExchangeRateResponse> getExchangeRate(final CurrencyUnit fromCurrencyCode, final CurrencyUnit toCurrencyCode) {
         try {
+            System.out.println("OpenExchangeRateClient fetching exchange rate: from:" + fromCurrencyCode + " to: " + toCurrencyCode);
             final var request = HttpRequest.newBuilder()
                     .uri(getUri(fromCurrencyCode, toCurrencyCode))
                     .GET()
