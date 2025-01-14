@@ -1,4 +1,4 @@
-package org.fransanchez.usecases.exchangerate.infrastructure;
+package org.fransanchez.usecases.exchangerate.infrastructure.openexchangerate;
 
 import org.fransanchez.usecases.exchangerate.domain.ExchangeRateProvider;
 import org.fransanchez.usecases.exchangerate.domain.cache.TimeBasedCache;

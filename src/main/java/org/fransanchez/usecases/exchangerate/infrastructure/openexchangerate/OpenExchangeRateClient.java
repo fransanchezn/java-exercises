@@ -1,4 +1,4 @@
-package org.fransanchez.usecases.exchangerate.infrastructure;
+package org.fransanchez.usecases.exchangerate.infrastructure.openexchangerate;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;

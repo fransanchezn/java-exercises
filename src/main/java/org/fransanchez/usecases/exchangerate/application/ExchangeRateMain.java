@@ -1,8 +1,8 @@
 package org.fransanchez.usecases.exchangerate.application;
 
-import org.fransanchez.usecases.exchangerate.domain.ExchangeRateService;
-import org.fransanchez.usecases.exchangerate.infrastructure.ApiExchangeRateProvider;
-import org.fransanchez.usecases.exchangerate.infrastructure.OpenExchangeRateClient;
+import org.fransanchez.usecases.exchangerate.domain.MoneyConverter;
+import org.fransanchez.usecases.exchangerate.infrastructure.openexchangerate.ApiExchangeRateProvider;
+import org.fransanchez.usecases.exchangerate.infrastructure.openexchangerate.OpenExchangeRateClient;
 import org.fransanchez.usecases.exchangerate.infrastructure.cache.MapTimeBasedCache;
 import org.javamoney.moneta.Money;
 
@@ -15,7 +15,7 @@ public class ExchangeRateMain {
         final var cache = new MapTimeBasedCache<String, BigDecimal>();
         final var exchangeRateClient = new OpenExchangeRateClient();
         final var exchangeRateProvider = new ApiExchangeRateProvider(exchangeRateClient, cache);
-        final var exchangeRateService = new ExchangeRateService(exchangeRateProvider);
+        final var exchangeRateService = new MoneyConverter(exchangeRateProvider);
 
         final var usd = Monetary.getCurrency("USD");
         final var eur = Monetary.getCurrency("EUR");

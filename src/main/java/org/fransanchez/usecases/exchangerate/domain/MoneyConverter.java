@@ -5,18 +5,18 @@ import org.fransanchez.usecases.exchangerate.domain.exception.ExchangeRateNotFou
 import javax.money.CurrencyUnit;
 import javax.money.MonetaryAmount;
 
-public class ExchangeRateService {
+public class MoneyConverter {
     private final ExchangeRateProvider exchangeRateProvider;
 
-    public ExchangeRateService(final ExchangeRateProvider exchangeRateProvider) {
+    public MoneyConverter(final ExchangeRateProvider exchangeRateProvider) {
         this.exchangeRateProvider = exchangeRateProvider;
     }
 
-    public ExchangeRateResult convert(final MonetaryAmount amount, final CurrencyUnit toCurrency) {
+    public MoneyConverterResult convert(final MonetaryAmount amount, final CurrencyUnit toCurrency) {
         final var exchangeRate = exchangeRateProvider.getExchangeRate(amount.getCurrency(), toCurrency)
                 .orElseThrow(() -> ExchangeRateNotFoundException.of(amount.getCurrency(), toCurrency));
 
         final var convertedAmount = amount.multiply(exchangeRate);
-        return new ExchangeRateResult(convertedAmount, exchangeRate);
+        return new MoneyConverterResult(convertedAmount, exchangeRate);
     }
 }

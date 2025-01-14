@@ -1,4 +1,4 @@
-package org.fransanchez.usecases.exchangerate.infrastructure;
+package org.fransanchez.usecases.exchangerate.infrastructure.openexchangerate;
 
 import java.util.Map;
 
