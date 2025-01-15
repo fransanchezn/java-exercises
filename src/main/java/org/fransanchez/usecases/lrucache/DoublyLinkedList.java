@@ -1,10 +1,10 @@
 package org.fransanchez.usecases.lrucache;
 
-public class LruLinkedList<V> {
+public class DoublyLinkedList<V> {
     private final Node<V> head;
     private final Node<V> tail;
 
-    public LruLinkedList() {
+    public DoublyLinkedList() {
         head = new Node<>(null);
         tail = new Node<>(null);
 

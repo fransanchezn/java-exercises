@@ -5,13 +5,13 @@ import java.util.Map;
 import java.util.Optional;
 
 public class LruCache<K, V> {
-    private final Map<K, LruLinkedList.Node<CacheEntry<K,V>>> cache;
-    private final LruLinkedList<CacheEntry<K,V>> list;
+    private final Map<K, DoublyLinkedList.Node<CacheEntry<K,V>>> cache;
+    private final DoublyLinkedList<CacheEntry<K,V>> list;
     private final int capacity;
 
     public LruCache(final int capacity) {
         cache = new HashMap<>();
-        list = new LruLinkedList<>();
+        list = new DoublyLinkedList<>();
         this.capacity = capacity;
     }
 
