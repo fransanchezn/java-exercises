@@ -30,8 +30,14 @@ public class MapTimeBasedCache<K, V> implements TimeBasedCache<K, V>, Closeable 
 
     @Override
     public synchronized Optional<V> get(final K key) {
-        return Optional.ofNullable(cache.get(key))
-                .map(ValueEntry::value);
+        final var entryOpt = Optional.ofNullable(cache.get(key));
+
+        if (entryOpt.isPresent() && entryOpt.get().isExpired()) {
+            cache.remove(key);
+            return Optional.empty();
+        }
+
+        return entryOpt.map(ValueEntry::value);
     }
 
     @Override
@@ -56,6 +62,10 @@ public class MapTimeBasedCache<K, V> implements TimeBasedCache<K, V>, Closeable 
         }
     }
 
-    record ValueEntry<V>(V value, Instant timestamp) {}
+    record ValueEntry<V>(V value, Instant timestamp) {
+        public boolean isExpired() {
+            return timestamp.isBefore(Instant.now());
+        }
+    }
 }
 
