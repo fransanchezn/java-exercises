@@ -4,12 +4,10 @@ import org.fransanchez.usecases.moneytransfers.infrastructure.InMemAccountReposi
 import org.fransanchez.usecases.moneytransfers.infrastructure.InMemTransferRepository;
 import org.javamoney.moneta.Money;
 
-import javax.money.CurrencyUnit;
 import javax.money.Monetary;
 import javax.money.MonetaryAmount;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.UUID;
 import java.util.concurrent.Callable;
@@ -22,16 +20,16 @@ public class TransferService {
     private final TransferRepository transferRepository;
 
     // These locks would be slower due to locking for all entry instead of specific entries!
-    private final Object lock1;
-    private final Object lock2;
+    // private final Object lock1;
+    // private final Object lock2;
 
     public TransferService(final AccountRepository accountRepository, final TransferRepository transferRepository) {
         this.accountRepository = accountRepository;
         this.transferRepository = transferRepository;
 
         // These locks would be slower due to locking for all entry instead of specific entries!
-        this.lock1 = new Object();
-        this.lock2 = new Object();
+        //this.lock1 = new Object();
+        //this.lock2 = new Object();
     }
 
     public Transfer createTransfer(final UUID fromAccountId, final UUID toAccountId, final MonetaryAmount amount) throws InterruptedException {
