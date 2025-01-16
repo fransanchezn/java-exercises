@@ -15,23 +15,23 @@ public class DefaultAtmService implements AtmService {
     }
 
     @Override
-    public MoneyAmount balance(final String accountId) {
+    public CustomMoneyAmount balance(final String accountId) {
         return bankService.getAccount(accountId).balance();
     }
 
     @Override
-    public MoneyAmount withdraw(String accountId, MoneyAmount moneyAmount) {
+    public CustomMoneyAmount withdraw(String accountId, CustomMoneyAmount customMoneyAmount) {
         final var account = bankService.getAccount(accountId);
         synchronized (account) {
-            return bankService.withdraw(accountId, moneyAmount);
+            return bankService.withdraw(accountId, customMoneyAmount);
         }
     }
 
     @Override
-    public MoneyAmount deposit(String accountId, MoneyAmount moneyAmount) {
+    public CustomMoneyAmount deposit(String accountId, CustomMoneyAmount customMoneyAmount) {
         final var account = bankService.getAccount(accountId);
         synchronized (account) {
-            return bankService.deposit(accountId, moneyAmount);
+            return bankService.deposit(accountId, customMoneyAmount);
         }
     }
 }

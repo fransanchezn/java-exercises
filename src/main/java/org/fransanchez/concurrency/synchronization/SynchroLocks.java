@@ -8,7 +8,6 @@ public class SynchroLocks {
     public int counter;
 
     private final Object lock = new Object();
-
     private final Lock reentrantLock = new ReentrantLock();
     private final Semaphore semaphore = new Semaphore(1);
 

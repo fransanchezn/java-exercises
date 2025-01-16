@@ -40,37 +40,37 @@ public class SmartMap {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        final var executor = Executors.newFixedThreadPool(10);
+        try (final var executor = Executors.newFixedThreadPool(10)) {
+            final var sMap = new SmartMap();
 
-        final var sMap = new SmartMap();
+            executor.submit(() -> {
+                try {
+                    sMap.add("EN", "Hi");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
 
-        executor.submit(() -> {
-            try {
-                sMap.add("EN", "Hi");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+            executor.submit(() -> {
+                try {
+                    sMap.add("IT", "Ciao");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
 
-        executor.submit(() -> {
-            try {
-                sMap.add("IT", "Ciao");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+            executor.submit(() -> {
+                try {
+                    sMap.add("ES", "Hola");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
 
-        executor.submit(() -> {
-            try {
-                sMap.add("ES", "Hola");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+            executor.shutdown();
+            executor.awaitTermination(10L, TimeUnit.MINUTES);
 
-        executor.shutdown();
-        executor.awaitTermination(10L, TimeUnit.MINUTES);
-
-        System.out.println(sMap.map);
+            System.out.println(sMap.map);
+        }
     }
 }

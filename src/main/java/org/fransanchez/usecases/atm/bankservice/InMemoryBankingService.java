@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.HashMap;
 import java.util.Map;
-import org.fransanchez.usecases.atm.MoneyAmount;
+import org.fransanchez.usecases.atm.CustomMoneyAmount;
 
 public class InMemoryBankingService implements BankingService {
     private static final Map<String, String> CARD_AUTHORIZATION = new HashMap<>();
@@ -16,14 +16,14 @@ public class InMemoryBankingService implements BankingService {
 
         final var account1 = new Account(
                 "accountId1",
-                new MoneyAmount(
+                new CustomMoneyAmount(
                         Currency.getInstance("EUR"),
                         new BigDecimal("10")
                 )
         );
         final var account2 = new Account(
                 "accountId2",
-                new MoneyAmount(
+                new CustomMoneyAmount(
                         Currency.getInstance("EUR"),
                         new BigDecimal("0")
                 )
@@ -53,17 +53,17 @@ public class InMemoryBankingService implements BankingService {
     }
 
     @Override
-    public MoneyAmount withdraw(final String accountId, final MoneyAmount moneyAmount) {
+    public CustomMoneyAmount withdraw(final String accountId, final CustomMoneyAmount customMoneyAmount) {
         final var account = getAccount(accountId);
         sleep(5_000L);
-        return account.withdraw(moneyAmount);
+        return account.withdraw(customMoneyAmount);
     }
 
     @Override
-    public MoneyAmount deposit(final String accountId, final MoneyAmount moneyAmount) {
+    public CustomMoneyAmount deposit(final String accountId, final CustomMoneyAmount customMoneyAmount) {
         final var account = getAccount(accountId);
         sleep(3_000L);
-        return account.deposit(moneyAmount);
+        return account.deposit(customMoneyAmount);
     }
 
     private void sleep(final long millis) {

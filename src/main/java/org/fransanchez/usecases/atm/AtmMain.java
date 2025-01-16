@@ -27,25 +27,25 @@ public class AtmMain {
 
         final var callables = new ArrayList<Callable<Void>>();
         callables.add(() -> {
-            final var depositBalance = atmService.deposit(accountId1, new MoneyAmount(Currency.getInstance("EUR"), new BigDecimal("15.55")));
+            final var depositBalance = atmService.deposit(accountId1, new CustomMoneyAmount(Currency.getInstance("EUR"), new BigDecimal("15.55")));
             System.out.println("[deposit] The balance for accountId: " + accountId1 + " is: " + depositBalance);
             return null;
         });
 
         callables.add(() -> {
-            final var depositBalance = atmService.deposit(accountId2, new MoneyAmount(Currency.getInstance("EUR"), new BigDecimal("5.55")));
+            final var depositBalance = atmService.deposit(accountId2, new CustomMoneyAmount(Currency.getInstance("EUR"), new BigDecimal("5.55")));
             System.out.println("[deposit] The balance for accountId: " + accountId2 + " is: " + depositBalance);
             return null;
         });
 
         callables.add(() -> {
-            final var withdrawBalance = atmService.withdraw(accountId1, new MoneyAmount(Currency.getInstance("EUR"), new BigDecimal("5.55")));
+            final var withdrawBalance = atmService.withdraw(accountId1, new CustomMoneyAmount(Currency.getInstance("EUR"), new BigDecimal("5.55")));
             System.out.println("[withdraw] The balance for accountId: " + accountId1 + " is: " + withdrawBalance);
             return null;
         });
 
         callables.add(() -> {
-            final var withdrawBalance = atmService.withdraw(accountId2, new MoneyAmount(Currency.getInstance("EUR"), new BigDecimal("5.55")));
+            final var withdrawBalance = atmService.withdraw(accountId2, new CustomMoneyAmount(Currency.getInstance("EUR"), new BigDecimal("5.55")));
             System.out.println("[withdraw] The balance for accountId: " + accountId2 + " is: " + withdrawBalance);
             return null;
         });

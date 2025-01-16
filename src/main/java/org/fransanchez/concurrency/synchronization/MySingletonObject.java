@@ -1,7 +1,9 @@
 package org.fransanchez.concurrency.synchronization;
 
+import java.util.concurrent.Executors;
+
 public class MySingletonObject {
-    public static MySingletonObject mySingletonObject = null;
+    public static MySingletonObject mySingletonObject;
 
     private MySingletonObject(final String threadName) {
         System.out.println("Creating singleton object: " + threadName);
@@ -17,12 +19,22 @@ public class MySingletonObject {
         return mySingletonObject;
     }
 
-    public static void main(String[] args) {
-        for (int i = 0; i < 10_000; i++) {
-            new Thread(() -> {
-                var singleton = MySingletonObject.getMySingletonObject();
-                System.out.println("MySingleton: " + singleton);
-            }).start();
+    public synchronized static MySingletonObject getMySingletonObject2() {
+        if (mySingletonObject == null) {
+            mySingletonObject = new MySingletonObject(Thread.currentThread().getName());
+        }
+
+        return mySingletonObject;
+    }
+
+    public static void main(final String[] args) {
+        try (final var executor = Executors.newFixedThreadPool(1_000)) {
+            for (int i = 0; i < 10_000; i++) {
+                executor.submit(() -> {
+                    var singleton = MySingletonObject.getMySingletonObject2();
+                    System.out.println("MySingleton: " + singleton);
+                });
+            }
         }
     }
 }

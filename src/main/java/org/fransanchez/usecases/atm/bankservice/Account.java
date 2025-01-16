@@ -1,17 +1,17 @@
 package org.fransanchez.usecases.atm.bankservice;
 
-import org.fransanchez.usecases.atm.MoneyAmount;
+import org.fransanchez.usecases.atm.CustomMoneyAmount;
 
 public class Account {
     private final String accountId;
-    private MoneyAmount balance;
+    private CustomMoneyAmount balance;
 
-    public Account(final String accountId, final MoneyAmount balance) {
+    public Account(final String accountId, final CustomMoneyAmount balance) {
         this.accountId = accountId;
         this.balance = balance;
     }
 
-    public MoneyAmount balance() {
+    public CustomMoneyAmount balance() {
         return balance;
     }
 
@@ -19,24 +19,24 @@ public class Account {
         return accountId;
     }
 
-    public MoneyAmount withdraw(final MoneyAmount amount) {
+    public CustomMoneyAmount withdraw(final CustomMoneyAmount amount) {
         if (amount.currency() != balance.currency()) {
             throw new IllegalArgumentException("Currency amount does not match accounts");
         }
 
         final var newBalance = balance.amount().subtract(amount.amount());
-        balance = new MoneyAmount(balance.currency(), newBalance);
+        balance = new CustomMoneyAmount(balance.currency(), newBalance);
 
         return balance;
     }
 
-    public MoneyAmount deposit(final MoneyAmount amount) {
+    public CustomMoneyAmount deposit(final CustomMoneyAmount amount) {
         if (amount.currency() != balance.currency()) {
             throw new IllegalArgumentException("Currency amount does not match accounts");
         }
 
         final var newBalance = balance.amount().add(amount.amount());
-        balance = new MoneyAmount(balance.currency(), newBalance);
+        balance = new CustomMoneyAmount(balance.currency(), newBalance);
 
         return balance;
 
