@@ -1,4 +1,4 @@
-package org.fransanchez.concurrency.multithreadingcourse.creation.test;
+package org.fransanchez.concurrency.multithreadingcourse.aCreation.test;
 
 import java.util.ArrayList;
 import java.util.List;

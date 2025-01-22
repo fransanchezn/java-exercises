@@ -1,4 +1,4 @@
-package org.fransanchez.concurrency.multithreadingcourse.creation.usecase;
+package org.fransanchez.concurrency.multithreadingcourse.aCreation.usecase;
 
 import java.util.ArrayList;
 import java.util.random.RandomGenerator;

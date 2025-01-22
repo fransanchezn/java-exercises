@@ -1,4 +1,4 @@
-package org.fransanchez.concurrency.multithreadingcourse.creation;
+package org.fransanchez.concurrency.multithreadingcourse.aCreation;
 
 public class MyThread extends Thread {
     @Override
