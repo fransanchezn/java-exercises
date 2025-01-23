@@ -30,6 +30,7 @@ public class InventoryCounterMain {
             thread.join();
         }
 
+        // Not printing zero since two threads are running concurrently modifying the same shared object
         System.out.println("inventoryCounter: " + inventoryCounter.items);
     }
 
@@ -41,6 +42,10 @@ public class InventoryCounterMain {
         }
 
         public void increase() {
+            // This is NOT an atomic operation
+            // 1. Get value
+            // 2. Increase value + 1
+            // 3. Store value back into the variable
             items++;
         }
 
