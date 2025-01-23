@@ -14,6 +14,9 @@ public class JoinThreadMain {
 
         for (final var task: tasks) {
             task.start();
+        }
+
+        for (final var task: tasks) {
             task.join(3_000L);
         }
 
