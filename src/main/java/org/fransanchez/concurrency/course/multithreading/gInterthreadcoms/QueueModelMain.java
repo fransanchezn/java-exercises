@@ -1,5 +1,6 @@
 package org.fransanchez.concurrency.course.multithreading.gInterthreadcoms;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Optional;
 import java.util.Queue;
@@ -16,11 +17,28 @@ public class QueueModelMain {
         final var producerLock = new Semaphore(queueCapacity);
         final var consumerLock = new Semaphore(0);
 
-        final var consumer = new Consumer(queue, producerLock, consumerLock);
-        final var producer = new Producer(queue, producerLock, consumerLock);
+        final var numberOfConsumers = 1;
+        final var numberOfProducers = 100;
 
-        consumer.start();
-        producer.start();
+        final var consumers = new ArrayList<Consumer>();
+        for (int i = 0; i < numberOfConsumers; i++) {
+            final var consumer = new Consumer(queue, producerLock, consumerLock);
+            consumers.add(consumer);
+        }
+
+        final var producers = new ArrayList<Producer>();
+        for (int i = 0; i < numberOfProducers; i++) {
+            final var producer = new Producer(queue, producerLock, consumerLock);
+            producers.add(producer);
+        }
+
+        for (final var con : consumers) {
+            con.start();
+        }
+
+        for (final var pro : producers) {
+            pro.start();
+        }
     }
 
     public static class Consumer extends Thread {
@@ -39,8 +57,7 @@ public class QueueModelMain {
             while (true) {
                 try {
                     consumerLock.acquire();
-                    final var entry = queue.remove();
-                    entry.ifPresent(this::consume);
+                    consume();
                 } catch (InterruptedException e) {
                     // Do Nothing
                 } finally {
@@ -49,8 +66,9 @@ public class QueueModelMain {
             }
         }
 
-        private void consume(final String entry) {
-            System.out.println("[" + Thread.currentThread().getName() + "] consuming: " + entry);
+        private void consume() {
+            final var entry = queue.remove();
+            entry.ifPresent((e) -> System.out.println("[" + Thread.currentThread().getName() + "] consuming: " + e + " queueSize: " + queue.size()));
         }
     }
 
@@ -86,12 +104,12 @@ public class QueueModelMain {
         private void produce() {
             final var randomInt = random.nextInt(Integer.MAX_VALUE);
             queue.add(String.valueOf(randomInt));
-            System.out.println("[" + Thread.currentThread().getName() + "] producing: " + randomInt);
+            System.out.println("[" + Thread.currentThread().getName() + "] producing: " + randomInt + " queueSize: " + queue.size());
         }
 
         private void sleepMs(final long ms) {
             try {
-                Thread.sleep(1_000L);
+                Thread.sleep(ms);
             } catch (InterruptedException e) {
                 // Do Nothing
             }
@@ -111,6 +129,10 @@ public class QueueModelMain {
 
         public synchronized Optional<String> remove() {
             return queue.isEmpty() ? Optional.empty() : Optional.ofNullable(queue.remove());
+        }
+
+        public synchronized int size() {
+            return this.queue.size();
         }
     }
 }
