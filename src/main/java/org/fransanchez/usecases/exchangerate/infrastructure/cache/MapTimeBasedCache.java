@@ -50,7 +50,7 @@ public class MapTimeBasedCache<K, V> implements TimeBasedCache<K, V>, Closeable 
     private synchronized void cleanUp() {
         try {
             final var expired = cache.entrySet().stream()
-                    .filter(entry -> entry.getValue().timestamp.compareTo(Instant.now()) < 0)
+                    .filter(entry -> entry.getValue().isExpired())
                     .toList();
 
             final var expiredCount = expired.size();
