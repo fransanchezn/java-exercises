@@ -1,4 +1,4 @@
-package org.fransanchez.concurrency.course.multithreading.iThreadmodelhighperformanceio;
+package org.fransanchez.concurrency.course.multithreading.jVirtualThreads;
 
 import java.util.ArrayList;
 
