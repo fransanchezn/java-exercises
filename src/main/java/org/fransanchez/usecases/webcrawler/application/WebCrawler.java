@@ -24,33 +24,26 @@ public class WebCrawler implements Closeable {
         this.executor = Executors.newVirtualThreadPerTaskExecutor();
     }
 
-    public void crawl(final Web web, final int threads) {
+    public void crawl(final Web web) {
         webQueue.add(web);
-        processQueue(threads);
+        Web next = web;
+        while(next != null) {
+            next = webQueue.poll();
+            System.out.println("Thread polling: " + Thread.currentThread());
+            if (next != null && next.getLevel() < 3 && !webStore.contains(next.getUri())) {
+                webStore.add(next.getUri());
+                final Web finalNext = next;
+                executor.submit(() -> processWeb(finalNext));
+            }
+        }
     }
 
-    private void processQueue(final int threads) {
-        for (int i = 0; i < threads; i++) {
-            executor.submit(() -> {
-                while (true) {
-                    final var web = webQueue.poll();
-                    if (web == null) {
-                        System.out.println("Thread finished " + Thread.currentThread());
-                        break;
-                    }
-
-                    if (!webStore.add(web.getUri())) {
-                        continue;
-                    }
-
-                    final var children = webFetcher.getWebChildren(web);
-                    for (final var child: children) {
-                        if (child.getLevel() < 3 && !webStore.contains(child.getUri())) {
-                            webQueue.add(child);
-                        }
-                    }
-                }
-            });
+    private void processWeb(final Web web) {
+        final var children = webFetcher.getWebChildren(web);
+        for (final var child : children) {
+            if (!webStore.contains(child.getUri())) {
+                webQueue.add(child);
+            }
         }
     }
 
@@ -58,10 +51,10 @@ public class WebCrawler implements Closeable {
         final var client = new JsoupWebClient();
         final var webFetcher = new HttpWebFetcher(client);
         final var webStore = new InMemoryWebStore();
-        final var webQueue = new InMemWebQueue(1_000);
+        final var webQueue = new InMemWebQueue(10);
 
         try (final var webCrawler = new WebCrawler(webFetcher, webStore, webQueue)) {
-            webCrawler.crawl(new Web(URI.create("https://web-scraping.dev/"), 0), 20_000);
+            webCrawler.crawl(new Web(URI.create("https://web-scraping.dev/"), 0));
         }
 
         System.out.println("Total size: " + webStore.getAll().size());

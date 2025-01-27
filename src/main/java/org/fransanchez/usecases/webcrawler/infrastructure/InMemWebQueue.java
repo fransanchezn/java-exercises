@@ -15,7 +15,7 @@ public class InMemWebQueue implements WebQueue {
     @Override
     public boolean add(Web web) {
         try {
-            return queue.offer(web, 1, TimeUnit.SECONDS);
+             return queue.offer(web, 1, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -28,5 +28,10 @@ public class InMemWebQueue implements WebQueue {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return this.queue.isEmpty();
     }
 }
