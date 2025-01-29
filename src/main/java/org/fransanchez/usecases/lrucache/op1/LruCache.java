@@ -1,10 +1,12 @@
-package org.fransanchez.usecases.lrucache;
+package org.fransanchez.usecases.lrucache.op1;
+
+import org.fransanchez.usecases.lrucache.Cache;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class LruCache<K, V> {
+public class LruCache<K, V> implements Cache<K, V> {
     private final Map<K, DoublyLinkedList.Node<CacheEntry<K,V>>> cache;
     private final DoublyLinkedList<CacheEntry<K,V>> list;
     private final int capacity;
@@ -15,6 +17,7 @@ public class LruCache<K, V> {
         this.capacity = capacity;
     }
 
+    @Override
     public synchronized Optional<V> get(final K key) {
         final var node = cache.get(key);
         if (node != null) {
@@ -27,7 +30,8 @@ public class LruCache<K, V> {
         return Optional.empty();
     }
 
-    public synchronized V put(final K key, final V value) {
+    @Override
+    public synchronized Optional<V> put(final K key, final V value) {
         if (cache.containsKey(key)) {
             list.remove(cache.get(key));
         } else if (cache.size() >= capacity) {
@@ -36,8 +40,8 @@ public class LruCache<K, V> {
         }
 
         final var node = list.addToHead(new CacheEntry<>(key, value));
-        cache.put(key, node);
-        return value;
+        return Optional.ofNullable(cache.put(key, node))
+                .map(e -> e.value.value);
     }
 
     private record CacheEntry<K, V>(K key, V value) {}

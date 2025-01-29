@@ -1,4 +1,4 @@
-package org.fransanchez.usecases.lrucache;
+package org.fransanchez.usecases.lrucache.op1;
 
 public class DoublyLinkedList<V> {
     private final Node<V> head;
