@@ -7,6 +7,7 @@ public class Logger {
     private LoggerAppender appender;
 
     private Logger() {
+        System.out.println("Logger new instance");
         this.appender = new ConsoleLoggerAppender();
     }
 
@@ -14,7 +15,6 @@ public class Logger {
         // Required sync if this is initialized in multiple threads.
         synchronized(Logger.class) {
             if (instance == null) {
-                System.out.println("Logger new instance");
                 instance = new Logger();
             }
         }

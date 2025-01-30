@@ -1,18 +1,15 @@
 package org.fransanchez.usecases.logger;
 
+import java.util.concurrent.Executors;
+
 public class LoggerMain {
     public static void main(String[] args) {
-        final var logger = Logger.getInstance();
-        logger.setAppender(new FileLoggerAppender());
-
-        for (int i = 0; i < 100; i++) {
-            new Thread(() -> {
-                if (Math.random() > 0.4) {
-                    logger.log(LogLevel.INFO, "Hello world");
-                } else {
-                    logger.log(LogLevel.DEBUG, "Hello world");
-                }
-            }).start();
+        try(final var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+            for (int i = 0; i < 100_000; i++) {
+                executor.submit(() -> {
+                    final var logger = Logger.getInstance();
+                });
+            }
         }
     }
 }
