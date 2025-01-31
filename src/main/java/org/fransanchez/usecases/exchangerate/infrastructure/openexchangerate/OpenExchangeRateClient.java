@@ -6,24 +6,40 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.fransanchez.usecases.exchangerate.domain.exception.ExchangeRateUnexpectedException;
 
 import javax.money.CurrencyUnit;
+import java.io.Closeable;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Optional;
+import java.util.concurrent.Executors;
 
-public class OpenExchangeRateClient {
-    private final String APP_ID = "a9b20a6956fd43c8af621c4d6a457151";
-    private final String END_POINT = "https://openexchangerates.org/api/latest.json";
+public class OpenExchangeRateClient implements Closeable {
+    private final static String APP_ID = "a9b20a6956fd43c8af621c4d6a457151";
+    private final static String END_POINT = "https://openexchangerates.org/api/latest.json";
 
-    private static final HttpClient httpClient;
-    private static final ObjectMapper objectMapper;
+    private static OpenExchangeRateClient instance;
 
-    static {
-        httpClient = HttpClient.newHttpClient();
+    private final HttpClient httpClient;
+    private final ObjectMapper objectMapper;
+
+    private OpenExchangeRateClient() {
+        httpClient = HttpClient.newBuilder()
+                .executor(Executors.newVirtualThreadPerTaskExecutor())
+                .build();
         objectMapper = new ObjectMapper()
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    }
+
+    public static OpenExchangeRateClient getInstance() {
+        synchronized (OpenExchangeRateClient.class) {
+            if (instance == null) {
+                instance = new OpenExchangeRateClient();
+            }
+
+            return instance;
+        }
     }
 
     public Optional<OpenExchangeRateResponse> getExchangeRate(final CurrencyUnit fromCurrencyCode, final CurrencyUnit toCurrencyCode) {
@@ -53,5 +69,10 @@ public class OpenExchangeRateClient {
                 + "?app_id=" + APP_ID
                 + "&base2=" + fromCurrency.getCurrencyCode()
                 + "&symbols=" + toCurrency.getCurrencyCode());
+    }
+
+    @Override
+    public void close() {
+        httpClient.close();
     }
 }
