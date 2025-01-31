@@ -1,33 +1,44 @@
 package org.fransanchez.usecases.parkinglot2;
 
+import java.util.UUID;
+import java.util.concurrent.Executors;
+
 public class ParkingSystem {
     private final Garage garage;
     private final PaymentSystem paymentSystem;
 
     public ParkingSystem(final int floors) {
-        this.garage = new Garage(2);
+        this.garage = new Garage(floors);
         this.paymentSystem = new PaymentSystem();
     }
 
     public boolean park(final Vehicle vehicle) {
-        return paymentSystem.add(vehicle.licensePlate)
-                .map(t -> garage.park(vehicle))
-                .orElse(false);
+        final var spaceAvailable = garage.park(vehicle);
+        if (spaceAvailable) {
+            paymentSystem.add(vehicle.licensePlate);
+        }
+        return spaceAvailable;
     }
 
     public boolean pay(final String licensePlate) {
-        return paymentSystem.pay(licensePlate)
-                .map(r -> garage.free(licensePlate))
-                .orElse(false);
+        paymentSystem.pay(licensePlate);
+        return garage.free(licensePlate);
     }
 
-    public static void main(String[] args) {
-        final var parkingSystem = new ParkingSystem(2);
-        parkingSystem.park(new Car("Fran001"));
-        parkingSystem.park(new Limo("Fran002"));
-        parkingSystem.park(new Semitruck("Fran003"));
+    public static void main(final String[] args) {
+        final var parkingSystem = new ParkingSystem(1);
+        try (final var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+            for (int i = 0; i < 20; i++) {
+                executor.submit(() -> {
+                    final var plate = UUID.randomUUID().toString();
+                    final var parked = parkingSystem.park(new Car(plate));
+                    if (!parked) {
+                        System.out.println("Vehicle: " + plate + " not parked!");
+                    }
+                });
+            }
+        }
 
-        parkingSystem.pay("Fran002");
-        parkingSystem.park(new Semitruck("Fran004"));
+        System.out.println(parkingSystem);
     }
 }

@@ -14,7 +14,7 @@ public class Parking {
         this.levels = new ArrayList<>();
     }
 
-    public ParkingLevel addLevel() {
+    public synchronized ParkingLevel addLevel() {
         final var nextLevel = levels.size();
         final var level = new ParkingLevel(nextLevel, new ArrayList<>());
         levels.add(level);

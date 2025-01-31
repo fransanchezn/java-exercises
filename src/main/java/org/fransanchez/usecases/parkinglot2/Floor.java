@@ -14,7 +14,7 @@ public class Floor {
         }
     }
 
-    public boolean park(final Vehicle vehicle) {
+    public synchronized boolean park(final Vehicle vehicle) {
         final var available = spots.stream().filter(Spot::isAvailable).count();
         if (available < vehicle.size) {
             return false;
@@ -40,13 +40,11 @@ public class Floor {
         return false;
     }
 
-    public boolean free(final String licensePlate) {
-        final var feed = spots.stream()
+    public synchronized boolean free(final String licensePlate) {
+        return spots.stream()
                 .filter(i -> i.vehicle != null && i.vehicle.licensePlate.equals(licensePlate))
                 .map(Spot::freeUp)
-                .findFirst();
-
-        return feed.isPresent();
+                .reduce(true, Boolean::equals);
     }
 
     private void park(final List<Spot> spots, final Vehicle vehicle) {
