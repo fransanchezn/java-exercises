@@ -1,5 +1,5 @@
 package org.fransanchez;
 
-public record SomeClass(String prop1, int prop2) {
+public record SomeClass(String field1, int field2) {
 
 }
